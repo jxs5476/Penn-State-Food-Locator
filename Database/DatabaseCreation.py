@@ -16,9 +16,4 @@ mycursor.execute("SHOW DATABASES")
 for db in mycursor:
     print(db)
 
-    # creates restaurant table
-#mycursor.execute('CREATE TABLE restaurant (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(50))')
-
-
-
 

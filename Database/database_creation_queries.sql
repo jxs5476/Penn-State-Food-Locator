@@ -21,19 +21,7 @@ CREATE TABLE operating_hours (id INT NOT NULL KEY AUTO_INCREMENT,
 									REFERENCES days(id),
 							  start_time TIME,
                               end_time TIME);
-                         
-CREATE TABLE contact_method (id INT NOT NULL KEY auto_increment, 
-							 typeOfContact VARCHAR(5),
-                             restaurant_ID INT, 
-								FOREIGN KEY (restaurant_ID)
-									REFERENCES restaurant(id));
-                                    
-CREATE TABLE dinning_options(id INT NOT NULL KEY auto_increment,
-							 restaurant_ID INT, 
-								FOREIGN KEY (restaurant_ID)
-                       				REFERENCES restaurant(id),
-							 access_method VARCHAR(15));
-                                    
+
 CREATE TABLE location (id INT NOT NULL KEY auto_increment, 
                        restaurant_ID INT, 
                        FOREIGN KEY (restaurant_ID)
@@ -42,4 +30,21 @@ CREATE TABLE location (id INT NOT NULL KEY auto_increment,
                        city VARCHAR(25),
                        state VARCHAR(2),
                        zip INT);
+                         
+CREATE TABLE contact_method (id INT NOT NULL KEY auto_increment, 
+							 typeOfContact VARCHAR(5),
+                             restaurant_ID INT, 
+								FOREIGN KEY (restaurant_ID)
+									REFERENCES restaurant(id),
+							  location_ID INT,
+								FOREIGN KEY (location_ID)
+									REFERENCES location(id));
+                                    
+CREATE TABLE dinning_options(id INT NOT NULL KEY auto_increment,
+							 restaurant_ID INT, 
+								FOREIGN KEY (restaurant_ID)
+                       				REFERENCES restaurant(id),
+							 access_method VARCHAR(15));
+                                    
+
 
