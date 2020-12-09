@@ -1,12 +1,13 @@
 
 
+
 mysql = {
     "host": "localhost",
-    "user": "ldleiter",
-    "passwd": "thePassword123",
+    "user": "root",
+    "passwd": "Marshmellow42",
 }
 
 databases = {
-    "userDB" : "userInformation",
-    "restaurantDB" : "restaurantInformation",
+    "userDB": "userInformation",
+    "restaurantDB": "restaurantInformation",
 }
