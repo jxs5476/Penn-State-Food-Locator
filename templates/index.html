@@ -5,6 +5,39 @@
     <title>Tit+le</title>
 </head>
 <body>
+<script>
+    function getSearch()
+    {
+        var url "http://localhost:8000";
+        var endpoint = "/searchbar";
+        var http = new XMLHttpRequest();
+        var query = document.getElementById("search");
+        var jsonString = JSON.stringify(query);
+
+        http.open("POST", url + endpoint, true);
+        http.setRequestHeader("Content-type", "application/json");
+
+        http.onreadystatechange = function () {
+        var DONE = 4;
+        var OK = 200;
+
+        if (http.readyState == DONE && http.status == OK && http.responseText)
+        {
+            var replyString = http.responseText;
+
+            var responseObj = JSON.parse(replyString);
+
+            document.getElementById("result").innerHTML = "JSON received: " + replyString;
+            document.getElementById("result").innerHTML += "<br>";
+
+        }
+
+    };
+
+    //Send Request
+    http.send(jsonString);
+}</script>
+
     <h2>Penn State Food Locator</h2>
     <label for="search">Search:</label>
     <input type="text" id="search" name="search">
