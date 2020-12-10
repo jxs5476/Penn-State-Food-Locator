@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Penn State Food Locator</title>
+    <link rel="shortcut icon" href="#">
 </head>
 <body>
 <script>
     function getSearch()
     {
         var url = "http://localhost:8000";
-        var endpoint = "/searchbar";
+        var endpoint = "/search";
         var http = new XMLHttpRequest();
-        var query = document.getElementById("search");
+        var query = document.getElementById("search").value;
         var jsonString = JSON.stringify(query);
 
         http.open("POST", url + endpoint, true);
@@ -24,9 +25,9 @@
         if (http.readyState == DONE && http.status == OK && http.responseText)
         {
             var replyString = http.responseText;
-            console.log("here")
+            console.log(replyString)
             var responseObj = JSON.parse(replyString);
-
+            console.log(replyString)
             document.getElementById("result").innerHTML = "JSON received: " + replyString;
             document.getElementById("result").innerHTML += "<br>";
 
@@ -42,5 +43,7 @@
     <label for="search">Search:</label>
     <input type="text" id="search" name="search">
     <button onclick="getSearch()">Search</button>
+    <hr color="Blue">
+<p id="result">result json will be printed here</p>
 </body>
 </html>

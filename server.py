@@ -16,7 +16,7 @@ def home():
 def get_query():
     query = request.get_json()
     print(query)
-    return query
+    return json.dumps(query)
 
 
 if __name__ == '__main__':
