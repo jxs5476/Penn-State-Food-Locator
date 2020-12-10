@@ -1,4 +1,6 @@
 # THE CONTROL
+import Model
+
 
 class Controller:
 
@@ -7,6 +9,11 @@ class Controller:
         self.search_type = search_type
         return
 
-    def control_main(self, search_text, search_type):
+    def get_user_search(self, query_dictionary):
+        return self.send_model_info(query_dictionary)
 
-        return
+    def send_model_info(self, query_dictionary):
+        model = Model(self.search_text, self.search_type)
+        return model.query_database(query_dictionary)
+
+
