@@ -15,7 +15,9 @@ def home():
 @app.route('/search', methods=["POST"])
 def get_query():
     query = request.get_json()
+
     print(query)
+
     return json.dumps(query)
 
 
