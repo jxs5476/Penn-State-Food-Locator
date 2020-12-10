@@ -4,11 +4,11 @@ import mysql.connector as msc
 
 class Model:
 
-    def __init__(self):
+    def __init__(self, search_text, search_type):
+        self.search_text = search_text
+        self.search_type = search_type
         return
 
-    def find_locations(self):
-        return
+    def query_database(self):
 
-    def model_main(self):
         return
