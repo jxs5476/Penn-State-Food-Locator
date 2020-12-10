@@ -13,7 +13,10 @@
         var endpoint = "/search";
         var http = new XMLHttpRequest();
         var query = document.getElementById("search").value;
+        var type = searchType.options[searchType.selectedIndex].text;
+        var jsonObj = {"Query": query , "Type" : type};
         var jsonString = JSON.stringify(query);
+
 
         http.open("POST", url + endpoint, true);
         http.setRequestHeader("Content-type", "application/json");
@@ -42,6 +45,34 @@
     <h2>Penn State Food Locator</h2>
     <label for="search">Search:</label>
     <input type="text" id="search" name="search">
+    <div style="margin: 0 auto; width: 200px;"> <label for="searchType">Type:</label>
+                <select id="searchType" name="select1" onmousedown="if(this.options.length>5){this.size=5;}" onchange='this.size=0;' onblur="this.size=0;">
+                    <option value="">0:00</option>
+                    <option value="">1:00</option>
+                    <option value="">2:00</option>
+                    <option value="">3:00</option>
+                    <option value="">4:00</option>
+                    <option value="">5:00</option>
+                    <option value="">6:00</option>
+                    <option value="">7:00</option>
+                    <option value="">8:00</option>
+                    <option value="">9:00</option>
+                    <option value="">10:00</option>
+                    <option value="">11:00</option>
+                    <option value="">12:00</option>
+                    <option value="">13:00</option>
+                    <option value="">14:00</option>
+                    <option value="">15:00</option>
+                    <option value="">16:00</option>
+                    <option value="">17:00</option>
+                    <option value="">18:00</option>
+                    <option value="">19:00</option>
+                    <option value="">20:00</option>
+                    <option value="">21:00</option>
+                    <option value="">22:00</option>
+                    <option value="">23:00</option>
+                </select>
+            </div>
     <button onclick="getSearch()">Search</button>
     <hr color="Blue">
 <p id="result">result json will be printed here</p>

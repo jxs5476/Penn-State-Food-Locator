@@ -1,7 +1,6 @@
 from flask import *
 from flask_cors import CORS
-
-# import food location py file
+import controller.py
 
 app = Flask(__name__)
 CORS(app)
@@ -16,9 +15,9 @@ def home():
 def get_query():
     query = request.get_json()
 
-    print(query)
+    search = controller.main()
 
-    return json.dumps(query)
+    return json.dumps(search)
 
 
 if __name__ == '__main__':
