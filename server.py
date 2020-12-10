@@ -1,7 +1,6 @@
 from flask import *
 from flask_cors import CORS
-
-# import food location py file
+import Controller
 
 app = Flask(__name__)
 CORS(app)
@@ -14,11 +13,12 @@ def home():
 
 @app.route('/search', methods=["POST"])
 def get_query():
-    query = request.get_json()
-    print(query)
-    return query
+    queryDict = request.get_json()
+    print(queryDict)
+
+    #results = Controller.get_user_search(queryDict)
+    return queryDict#results
 
 
 if __name__ == '__main__':
     app.run(port=8000)
-

@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Penn State Food Locator</title>
+    <link rel="shortcut icon" href="#">
 </head>
 <body>
 <script>
     function getSearch()
     {
         var url = "http://localhost:8000";
-        var endpoint = "/searchbar";
+        var endpoint = "/search";
         var http = new XMLHttpRequest();
-        var query = document.getElementById("search");
-        var jsonString = JSON.stringify(query);
+        var query = document.getElementById("search").value;
+        var type = searchType.options[searchType.selectedIndex].text;
+        var jsonObj = {"Query": query , "Type" : type};
+        var jsonString = JSON.stringify(jsonObj);
+
 
         http.open("POST", url + endpoint, true);
         http.setRequestHeader("Content-type", "application/json");
@@ -24,9 +28,9 @@
         if (http.readyState == DONE && http.status == OK && http.responseText)
         {
             var replyString = http.responseText;
-            console.log("here")
+            console.log(replyString)
             var responseObj = JSON.parse(replyString);
-
+            console.log(replyString)
             document.getElementById("result").innerHTML = "JSON received: " + replyString;
             document.getElementById("result").innerHTML += "<br>";
 
@@ -41,6 +45,15 @@
     <h2>Penn State Food Locator</h2>
     <label for="search">Search:</label>
     <input type="text" id="search" name="search">
+
+                <select id="searchType" name="select1" onmousedown="if(this.options.length>5){this.size=5;}" onchange='this.size=0;' onblur="this.size=0;">
+                    <option value="">Restaurant Type</option>
+                    <option value="">Restaurant Name</option>
+                    <option value="">Dining Option</option>
+                </select>
+<br>
     <button onclick="getSearch()">Search</button>
+    <hr color="Blue">
+<p id="result">Search Results Appear Here</p>
 </body>
 </html>
