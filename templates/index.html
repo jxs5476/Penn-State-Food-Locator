@@ -45,15 +45,15 @@
     <h2>Penn State Food Locator</h2>
     <label for="search">Search:</label>
     <input type="text" id="search" name="search">
-    <div style="margin: 0 auto; width: 200px;"> <label for="searchType">Type:</label>
+
                 <select id="searchType" name="select1" onmousedown="if(this.options.length>5){this.size=5;}" onchange='this.size=0;' onblur="this.size=0;">
                     <option value="">Restaurant Type</option>
                     <option value="">Restaurant Name</option>
                     <option value="">Dining Option</option>
                 </select>
-            </div>
+<br>
     <button onclick="getSearch()">Search</button>
     <hr color="Blue">
-<p id="result">result json will be printed here</p>
+<p id="result">Search Results Appear Here</p>
 </body>
 </html>

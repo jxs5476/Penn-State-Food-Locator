@@ -16,8 +16,8 @@ def get_query():
     queryDict = request.get_json()
     print(queryDict)
 
-    results = Controller.get_user_search(queryDict)
-    return results
+    #results = Controller.get_user_search(queryDict)
+    return queryDict#results
 
 
 if __name__ == '__main__':
