@@ -29,47 +29,55 @@ class Model:
 
 
         if self.search_type == "Dinning Options":
-
             cursor.execute(f'SELECT restaurant_ID FROM dinning_options WHERE access_method = "{self.search_text}"')
             restaurantID = cursor.fetchall()
-            #print(restaurantID)
-            for r_id in restaurantID:
-                restaurant = {}
-                cursor.execute(f'SELECT name FROM restaurant WHERE id = "{r_id[0]}"')
-                restaurant["name"] = cursor.fetchone()[0]
+        elif self.search_type == "Restaurant Type":
+            cursor.execute(f'SELECT restaurant_ID FROM restaurant_type WHERE restaurant_type = "{self.search_text}"')
+            restaurantID = cursor.fetchall()
+        elif self.search_type == "Restaurant Name":
+            cursor.execute(f'SELECT id FROM restaurant WHERE name = "{self.search_text}"')
+            restaurantID = cursor.fetchall()
+
+
+        for r_id in restaurantID:
+            restaurant = {}
+            cursor.execute(f'SELECT name FROM restaurant WHERE id = "{r_id[0]}"')
+            restaurant["name"] = cursor.fetchone()[0]
 
 
 
-                cursor.execute(f'SELECT id FROM location WHERE restaurant_ID = "{r_id[0]}"')
-                locationID = cursor.fetchall();
-                cursor.execute(f'SELECT street, city, state, zip FROM location WHERE restaurant_ID = "{r_id[0]}"')
-                locations = cursor.fetchall();
+            cursor.execute(f'SELECT id FROM location WHERE restaurant_ID = "{r_id[0]}"')
+            locationID = cursor.fetchall();
+            cursor.execute(f'SELECT street, city, state, zip FROM location WHERE restaurant_ID = "{r_id[0]}"')
+            locations = cursor.fetchall();
 
-                for l_id, location in zip(locationID, locations):
-                    restaurant1 = {"name": restaurant["name"]}
-                    restaurant1["address"] = location
-                    restaurant1 = {"name": restaurant1["name"], "address": restaurant1["address"]}
+            for l_id, location in zip(locationID, locations):
+                restaurant1 = {"name": restaurant["name"]}
+                restaurant1["address"] = location
+                restaurant1 = {"name": restaurant1["name"], "address": restaurant1["address"]}
 
-                    cursor.execute(f'SELECT theContact FROM contact_method WHERE typeOfContact = "phone" AND location_ID = {l_id[0]}')
-                    restaurant1["phone"] = cursor.fetchone()[0]
-                    operatingHours = {}
-                    days = ["M", "T", "W", "TR", "F", "SA", "SU"]
-                    for day in days:
-                        cursor.execute(f'SELECT start_time, end_time FROM operating_hours WHERE day_open_id = (SELECT id FROM days WHERE day_of_the_week = "{day}") AND location_id = {l_id[0]}')
-                        delta = cursor.fetchone()
-                        if delta is not None:
-                            delta1 = (str(delta[0]), str(delta[1]))
-                            operatingHours[day] = delta1
-                        else:
-                            operatingHours[day] = None
+                cursor.execute(f'SELECT theContact FROM contact_method WHERE typeOfContact = "phone" AND location_ID = {l_id[0]}')
+                restaurant1["phone"] = cursor.fetchone()[0]
+                operatingHours = {}
+                days = ["M", "T", "W", "TR", "F", "SA", "SU"]
+                for day in days:
+                    cursor.execute(f'SELECT start_time, end_time FROM operating_hours WHERE day_open_id = (SELECT id FROM days WHERE day_of_the_week = "{day}") AND location_id = {l_id[0]}')
+                    delta = cursor.fetchone()
+                    if delta is not None:
+                        delta1 = (str(delta[0]), str(delta[1]))
+                        operatingHours[day] = delta1
+                    else:
+                        operatingHours[day] = None
 
-                    restaurant1["hours"] = operatingHours
+                restaurant1["hours"] = operatingHours
 
-                    restaurant_list.append(restaurant1)
+                restaurant_list.append(restaurant1)
 
+        cursor.close()
         for restaurant in restaurant_list:
             print(restaurant)
-        cursor.close()
+
+        return restaurant_list
 
 
 
