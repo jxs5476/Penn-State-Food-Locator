@@ -44,7 +44,7 @@ class Model:
                 locationID = cursor.fetchall();
                 cursor.execute(f'SELECT street, city, state, zip FROM location WHERE restaurant_ID = "{r_id[0]}"')
                 locations = cursor.fetchall();
-                #print(locations)
+
                 for l_id, location in zip(locationID, locations):
                     restaurant1 = {"name": restaurant["name"]}
                     restaurant1["address"] = location
@@ -56,11 +56,14 @@ class Model:
                     days = ["M", "T", "W", "TR", "F", "SA", "SU"]
                     for day in days:
                         cursor.execute(f'SELECT start_time, end_time FROM operating_hours WHERE day_open_id = (SELECT id FROM days WHERE day_of_the_week = "{day}") AND location_id = {l_id[0]}')
-                        operatingHours[day] = str(cursor.fetchone())
+                        delta = cursor.fetchone()
+                        if delta is not None:
+                            delta1 = (str(delta[0]), str(delta[1]))
+                            operatingHours[day] = delta1
+                        else:
+                            operatingHours[day] = None
 
                     restaurant1["hours"] = operatingHours
-
-
 
                     restaurant_list.append(restaurant1)
 
