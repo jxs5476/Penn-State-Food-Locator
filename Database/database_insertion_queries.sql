@@ -1,3 +1,5 @@
+use restaurantinformation;
+
 select * from operating_hours;
 
 show tables;
