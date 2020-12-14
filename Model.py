@@ -7,16 +7,14 @@ import Database.databaseConfig as cfg
 
 class Model:
 
-    def __init__(self):
-        self.search_text = ""
-        self.search_type = ""
+    def __init__(self,search_text, search_type):
+        self.search_text = search_text
+        self.search_type = search_type
         return
 
-    def query_database(self, query_dictionary):
+    def query_database(self):
 
         restaurant_list = []
-        self.search_text = query_dictionary["Query"]
-        self.search_type = query_dictionary["Type"]
 
         mydb = msc.connect(
             host=cfg.mysql["host"],
