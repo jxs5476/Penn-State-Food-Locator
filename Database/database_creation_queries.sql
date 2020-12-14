@@ -10,7 +10,7 @@ CREATE TABLE restaurant_type (id INT NOT NULL KEY AUTO_INCREMENT,
 							  restaurant_type VARCHAR(25),
 							  restaurant_ID INT,
                                     FOREIGN KEY (restaurant_ID)
-                       				    REFERENCES restaurant(id),);
+                       				    REFERENCES restaurant(id));
 
 CREATE TABLE days (id INT NOT NULL KEY AUTO_INCREMENT,
 				   day_of_the_week VARCHAR(2));
