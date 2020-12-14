@@ -23,7 +23,7 @@ class Model:
             database="restaurantinformation")
 
         cursor = mydb.cursor(buffered=True)
-
+        restaurantID = ()
         if self.search_type == "Dinning Options":
             cursor.execute(f'SELECT restaurant_ID FROM dinning_options WHERE access_method = "{self.search_text}"')
             restaurantID = cursor.fetchall()

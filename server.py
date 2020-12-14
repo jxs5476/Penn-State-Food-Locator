@@ -17,7 +17,6 @@ def get_query():
     print(queryDict)
     controller = Controller()
     results = Controller.get_user_search(controller, queryDict)
-    print("ha")
     return json.dumps(results)
 
 

@@ -28,14 +28,15 @@
         if (http.readyState == DONE && http.status == OK && http.responseText)
         {
             var replyString = http.responseText;
-            console.log(replyString)
+
             var responseObj = JSON.parse(replyString);
-            var i = 0;
+            console.log(responseObj)
+            var i = 1;
             for(i; i < 5; i++){
             var restelementname = "restaurantName" + i.toString();
             var elementname = "result" + i.toString();
             if(responseObj[0].name != null){
-                document.getElementById("restelementname").innerHTML = responseObj[i];
+                document.getElementById("restelementname").innerHTML = responseObj[i].name;
             }
         }
        }
