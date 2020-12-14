@@ -12,6 +12,15 @@ CREATE TABLE restaurant_type (id INT NOT NULL KEY AUTO_INCREMENT,
 CREATE TABLE days (id INT NOT NULL KEY AUTO_INCREMENT,
 				   day_of_the_week VARCHAR(2));
 
+CREATE TABLE location (id INT NOT NULL KEY auto_increment,
+                       restaurant_ID INT,
+                       FOREIGN KEY (restaurant_ID)
+                       				REFERENCES restaurant(id),
+                       street VARCHAR(40),
+                       city VARCHAR(25),
+                       state VARCHAR(2),
+                       zip INT);
+                       
 CREATE TABLE operating_hours (id INT NOT NULL KEY AUTO_INCREMENT,
 							  restaurant_ID INT, 
 								FOREIGN KEY (restaurant_ID)
@@ -24,15 +33,6 @@ CREATE TABLE operating_hours (id INT NOT NULL KEY AUTO_INCREMENT,
 									REFERENCES location(id),
 							  start_time TIME,
                               end_time TIME);
-
-CREATE TABLE location (id INT NOT NULL KEY auto_increment, 
-                       restaurant_ID INT, 
-                       FOREIGN KEY (restaurant_ID)
-                       				REFERENCES restaurant(id),
-                       street VARCHAR(40),
-                       city VARCHAR(25),
-                       state VARCHAR(2),
-                       zip INT);
                          
 CREATE TABLE contact_method (id INT NOT NULL KEY auto_increment, 
 							 typeOfContact VARCHAR(5),
