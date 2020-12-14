@@ -1,12 +1,12 @@
 # THE CONTROL
-import Model
+from Model import Model
 
 
 class Controller:
 
-    def __init__(self, search_text, search_type):
-        self.search_text = search_text
-        self.search_type = search_type
+    def __init__(self):
+        self.search_text = 0
+        self.search_type = 0
         return
 
     def get_user_search(self, query_dictionary):

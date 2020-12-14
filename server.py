@@ -1,6 +1,6 @@
 from flask import *
 from flask_cors import CORS
-import Controller
+from Controller import Controller
 
 app = Flask(__name__)
 CORS(app)
@@ -15,9 +15,9 @@ def home():
 def get_query():
     queryDict = request.get_json()
     print(queryDict)
-
-    #results = Controller.get_user_search(queryDict)
-    return queryDict#results
+    controller = Controller()
+    results = Controller.get_user_search(controller, queryDict)
+    return results
 
 
 if __name__ == '__main__':
