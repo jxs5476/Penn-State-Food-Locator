@@ -19,6 +19,9 @@ CREATE TABLE operating_hours (id INT NOT NULL KEY AUTO_INCREMENT,
 							  day_open_ID INT,
 								FOREIGN KEY (day_open_ID)
 									REFERENCES days(id),
+							  location_ID INT,
+								FOREIGN KEY (location_ID)
+									REFERENCES location(id),
 							  start_time TIME,
                               end_time TIME);
 
