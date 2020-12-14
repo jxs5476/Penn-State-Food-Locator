@@ -23,6 +23,7 @@ class Model:
             database="restaurantinformation")
 
         cursor = mydb.cursor(buffered=True)
+        restaurantID = ()
 
         if self.search_type == "Dinning Options":
             cursor.execute(f'SELECT restaurant_ID FROM dinning_options WHERE access_method = "{self.search_text}"')
@@ -34,13 +35,10 @@ class Model:
             cursor.execute(f'SELECT id FROM restaurant WHERE name = "{self.search_text}"')
             restaurantID = cursor.fetchall()
 
-
         for r_id in restaurantID:
             restaurant = {}
             cursor.execute(f'SELECT name FROM restaurant WHERE id = "{r_id[0]}"')
             restaurant["name"] = cursor.fetchone()[0]
-
-
 
             cursor.execute(f'SELECT id FROM location WHERE restaurant_ID = "{r_id[0]}"')
             locationID = cursor.fetchall();
@@ -73,9 +71,7 @@ class Model:
         for restaurant in restaurant_list:
             print(restaurant)
 
-        return restaurant_list
-
-
+        return tuple(restaurant_list)
 
     def __connectDatabase(self):
         mydb = msc.connect(
@@ -85,6 +81,5 @@ class Model:
             database="restaurantinformation")
 
         cursor = mydb.cursor()
-
 
         return cursor
