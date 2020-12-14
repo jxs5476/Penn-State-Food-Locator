@@ -7,7 +7,10 @@ CREATE TABLE restaurant (id INT NOT NULL KEY AUTO_INCREMENT,
 						 name varchar(50));
 
 CREATE TABLE restaurant_type (id INT NOT NULL KEY AUTO_INCREMENT,
-							  restaurant_type VARCHAR(25));
+							  restaurant_type VARCHAR(25),
+							  restaurant_ID INT,
+                                    FOREIGN KEY (restaurant_ID)
+                       				    REFERENCES restaurant(id),);
 
 CREATE TABLE days (id INT NOT NULL KEY AUTO_INCREMENT,
 				   day_of_the_week VARCHAR(2));
@@ -20,7 +23,7 @@ CREATE TABLE location (id INT NOT NULL KEY auto_increment,
                        city VARCHAR(25),
                        state VARCHAR(2),
                        zip INT);
-                       
+
 CREATE TABLE operating_hours (id INT NOT NULL KEY AUTO_INCREMENT,
 							  restaurant_ID INT, 
 								FOREIGN KEY (restaurant_ID)
