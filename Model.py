@@ -24,8 +24,6 @@ class Model:
 
         cursor = mydb.cursor(buffered=True)
 
-
-
         if self.search_type == "Dinning Options":
             cursor.execute(f'SELECT restaurant_ID FROM dinning_options WHERE access_method = "{self.search_text}"')
             restaurantID = cursor.fetchall()
@@ -36,13 +34,10 @@ class Model:
             cursor.execute(f'SELECT id FROM restaurant WHERE name = "{self.search_text}"')
             restaurantID = cursor.fetchall()
 
-
         for r_id in restaurantID:
             restaurant = {}
             cursor.execute(f'SELECT name FROM restaurant WHERE id = "{r_id[0]}"')
             restaurant["name"] = cursor.fetchone()[0]
-
-
 
             cursor.execute(f'SELECT id FROM location WHERE restaurant_ID = "{r_id[0]}"')
             locationID = cursor.fetchall();
@@ -54,12 +49,14 @@ class Model:
                 restaurant1["address"] = location
                 restaurant1 = {"name": restaurant1["name"], "address": restaurant1["address"]}
 
-                cursor.execute(f'SELECT theContact FROM contact_method WHERE typeOfContact = "phone" AND location_ID = {l_id[0]}')
+                cursor.execute(
+                    f'SELECT theContact FROM contact_method WHERE typeOfContact = "phone" AND location_ID = {l_id[0]}')
                 restaurant1["phone"] = cursor.fetchone()[0]
                 operatingHours = {}
                 days = ["M", "T", "W", "TR", "F", "SA", "SU"]
                 for day in days:
-                    cursor.execute(f'SELECT start_time, end_time FROM operating_hours WHERE day_open_id = (SELECT id FROM days WHERE day_of_the_week = "{day}") AND location_id = {l_id[0]}')
+                    cursor.execute(
+                        f'SELECT start_time, end_time FROM operating_hours WHERE day_open_id = (SELECT id FROM days WHERE day_of_the_week = "{day}") AND location_id = {l_id[0]}')
                     delta = cursor.fetchone()
                     if delta is not None:
                         delta1 = (str(delta[0]), str(delta[1]))
@@ -75,9 +72,7 @@ class Model:
         for restaurant in restaurant_list:
             print(restaurant)
 
-        return restaurant_list
-
-
+        return tuple(restaurant_list)
 
     def __connectDatabase(self):
         mydb = msc.connect(
@@ -87,6 +82,5 @@ class Model:
             database="restaurantinformation")
 
         cursor = mydb.cursor()
-
 
         return cursor
