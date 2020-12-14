@@ -35,6 +35,7 @@
             var nameelement = "restaurantName" + i.toString();
             var addresselement = "address" + i.toString();
             var phoneelement = "phone" + i.toString();
+            var counter = 0;
             suelement = "SU" + i.toString();
             melement = "M" + i.toString();
             telement = "T" + i.toString();
@@ -55,6 +56,9 @@
                 document.getElementById(saelement).innerHTML = "Saturday: " + responseObj[i].hours["SA"];
             }
             else{
+            if(i == 4){
+                document.getElementById(nameelement).innerHTML = "No Results";
+}
                 document.getElementById(nameelement).innerHTML = " ";
                 document.getElementById(addresselement).innerHTML = " ";
                 document.getElementById(phoneelement).innerHTML = " ";
