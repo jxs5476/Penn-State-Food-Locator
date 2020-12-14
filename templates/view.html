@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Penn State Food Locator</title>
+    <pnk rel="shortcut icon" href="#">
+</head>
+<body>
+<script>
+    function getSearch()
+    {
+        var url = "http://localhost:8000";
+        var endpoint = "/search";
+        var http = new XMLHttpRequest();
+        var query = document.getElementById("search").value;
+        var type = searchType.options[searchType.selectedIndex].text;
+        var jsonObj = {"Query": query , "Type" : type};
+        var jsonString = JSON.stringify(jsonObj);
+
+
+        http.open("POST", url + endpoint, true);
+        http.setRequestHeader("Content-type", "application/json");
+
+        http.onreadystatechange = function () {
+        var DONE = 4;
+        var OK = 200;
+
+        if (http.readyState == DONE && http.status == OK && http.responseText)
+        {
+            var replyString = http.responseText;
+            var responseObj = JSON.parse(replyString);
+            console.log(responseObj)
+            var i = 0;
+            for(i; i < 5; i++){
+            var nameelement = "restaurantName" + i.toString();
+            var addresselement = "address" + i.toString();
+            var phoneelement = "phone" + i.toString();
+            suelement = "SU" + i.toString();
+            melement = "M" + i.toString();
+            telement = "T" + i.toString();
+            welement = "W" + i.toString();
+            trelement = "TR" + i.toString();
+            felement = "F" + i.toString();
+            saelement = "SA" + i.toString();
+            if(responseObj[i] != null){
+                document.getElementById(nameelement).innerHTML = responseObj[i].name;
+                document.getElementById(addresselement).innerHTML = responseObj[i].address;
+                document.getElementById(phoneelement).innerHTML = responseObj[i].phone;
+                document.getElementById(suelement).innerHTML = "Sunday: " + responseObj[i].hours["SU"];
+                document.getElementById(melement).innerHTML = "Monday: " + responseObj[i].hours["M"];
+                document.getElementById(telement).innerHTML = "Tuesday: " + responseObj[i].hours["T"];
+                document.getElementById(welement).innerHTML = "Wednesday: " + responseObj[i].hours["W"];
+                document.getElementById(trelement).innerHTML = "Thursday: " + responseObj[i].hours["TR"];
+                document.getElementById(felement).innerHTML = "Friday: " + responseObj[i].hours["F"];
+                document.getElementById(saelement).innerHTML = "Saturday: " + responseObj[i].hours["SA"];
+            }
+            else{
+                document.getElementById(nameelement).innerHTML = " ";
+                document.getElementById(addresselement).innerHTML = " ";
+                document.getElementById(phoneelement).innerHTML = " ";
+                document.getElementById(suelement).innerHTML = " ";
+                document.getElementById(melement).innerHTML = " ";
+                document.getElementById(telement).innerHTML = " ";
+                document.getElementById(welement).innerHTML = " ";
+                document.getElementById(trelement).innerHTML = " ";
+                document.getElementById(felement).innerHTML = " ";
+                document.getElementById(saelement).innerHTML = " ";
+            }
+        }
+       }
+
+    };
+
+    //Send Request
+    http.send(jsonString);
+}</script>
+
+    <h2>Penn State Food Locator</h2>
+    <label for="search">Search:</label>
+    <input type="text" id="search" name="search">
+     <label for="searchType">Search by:</label>
+                <select id="searchType" name="select1" onmousedown="if(this.options.length>5){this.size=5;}" onchange='this.size=0;' onblur="this.size=0;">
+                    <option value="">Restaurant Name</option>
+                    <option value="">Restaurant Type</option>
+                    <option value="">Dining Option</option>
+                </select>
+<br>
+    <button onclick="getSearch()">Search</button>
+
+    <hr color="Blue">
+
+<h5 id="restaurantName0"></h5>
+<p id="address0"> </p>
+<p id="phone0"> </p>
+
+    <p id = "SU0"></p>
+    <p id = "M0"></p>
+    <p id = "T0"></p>
+    <p id = "W0"></p>
+    <p id = "TR0"></p>
+    <p id = "F0"></p>
+    <p id = "SA0"></p>
+
+
+<h5 id="restaurantName1"></h5>
+<p id="address1"> </p>
+<p id="phone1"> </p>
+
+    <p id = "SU1"></p>
+    <p id = "M1"></p>
+    <p id = "T1"></p>
+    <p id = "W1"></p>
+    <p id = "TR1"></p>
+    <p id = "F1"></p>
+    <p id = "SA1"></p>
+
+
+<h5 id="restaurantName2"></h5>
+<p id="address2"> </p>
+<p id="phone2"> </p>
+
+    <p id = "SU2"></p>
+    <p id = "M2"></p>
+    <p id = "T2"></p>
+    <p id = "W2"></p>
+    <p id = "TR2"></p>
+    <p id = "F2"></p>
+    <p id = "SA2"></p>
+
+
+<h5 id="restaurantName3"></h5>
+<p id="address3"> </p>
+<p id="phone3"> </p>
+
+    <p id = "SU3"></p>
+    <p id = "M3"></p>
+    <p id = "T3"></p>
+    <p id = "W3"></p>
+    <p id = "TR3"></p>
+    <p id = "F3"></p>
+    <p id = "SA3"></p>
+
+
+<h5 id="restaurantName4"></h5>
+<p id="address4"> </p>
+<p id="phone4"> </p>
+
+    <p id = "SU4"></p>
+    <p id = "M4"></p>
+    <p id = "T4"></p>
+    <p id = "W4"></p>
+    <p id = "TR4"></p>
+    <p id = "F4"></p>
+    <p id = "SA4"></p>
+
+</body>
+</html>

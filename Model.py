@@ -25,7 +25,7 @@ class Model:
         cursor = mydb.cursor(buffered=True)
         restaurantID = ()
 
-        if self.search_type == "Dinning Options":
+        if self.search_type == "Dining Option":
             cursor.execute(f'SELECT restaurant_ID FROM dinning_options WHERE access_method = "{self.search_text}"')
             restaurantID = cursor.fetchall()
         elif self.search_type == "Restaurant Type":
@@ -61,7 +61,7 @@ class Model:
                         delta1 = (str(delta[0]), str(delta[1]))
                         operatingHours[day] = delta1
                     else:
-                        operatingHours[day] = None
+                        operatingHours[day] = "Closed"
 
                 restaurant1["hours"] = operatingHours
 
