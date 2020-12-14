@@ -35,8 +35,8 @@
             var restelementname = "restaurantName" + i.toString();
             var elementname = "result" + i.toString();
             if(
-                document.getElementById("restelementname").innerHTML = responseObj[0].name;
-                document.getElementById("elementname").innerHTML = responseObj[0].address;
+                document.getElementById("restelementname").innerHTML = responseObj[0].name[0]
+                document.getElementById("elementname").innerHTML = responseObj[0].address[0];
             }
 
         }
@@ -52,8 +52,8 @@
     <input type="text" id="search" name="search">
 
                 <select id="searchType" name="select1" onmousedown="if(this.options.length>5){this.size=5;}" onchange='this.size=0;' onblur="this.size=0;">
-                    <option value="">Restaurant Type</option>
                     <option value="">Restaurant Name</option>
+                    <option value="">Restaurant Type</option>
                     <option value="">Dining Option</option>
                 </select>
 <br>
