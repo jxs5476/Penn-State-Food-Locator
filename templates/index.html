@@ -31,12 +31,12 @@
 
             var responseObj = JSON.parse(replyString);
             console.log(responseObj)
-            var i = 1;
+            var i = 0;
             for(i; i < 5; i++){
             var restelementname = "restaurantName" + i.toString();
             var elementname = "result" + i.toString();
-            if(responseObj[0].name != null){
-                document.getElementById("restelementname").innerHTML = responseObj[i].name;
+            if(responseObj[i] != null){
+                document.getElementById(restelementname).innerHTML += responseObj[i].name;
             }
         }
        }
@@ -59,15 +59,15 @@
 <br>
     <button onclick="getSearch()">Search</button>
     <hr color="Blue">
+<h5 id="restaurantName0"></h5>
+<p id="result0">Search Results Appear Here</p>
 <h5 id="restaurantName1"></h5>
-<p id="result1">Search Results Appear Here</p>
+<p id="result1"> </p>
 <h5 id="restaurantName2"></h5>
-<p id="result2"></p>
+<p id="result2"> </p>
 <h5 id="restaurantName3"></h5>
-<p id="result3"></p>
+<p id="result3"> </p>
 <h5 id="restaurantName4"></h5>
-<p id="result4"></p>
-<h5 id="restaurantName5"></h5>
-<p id="result5"></p>
+<p id="result4"> </p>
 </body>
 </html>
