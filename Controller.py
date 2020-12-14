@@ -13,7 +13,6 @@ class Controller:
         return self.send_model_info(query_dictionary)
 
     def send_model_info(self, query_dictionary):
-        model = Model(self.search_text, self.search_type)
+        model = Model(search_type=query_dictionary["Type"], search_text=query_dictionary["Query"])
         return model.query_database(query_dictionary)
-
 
