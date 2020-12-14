@@ -39,6 +39,7 @@ CREATE TABLE operating_hours (id INT NOT NULL KEY AUTO_INCREMENT,
                          
 CREATE TABLE contact_method (id INT NOT NULL KEY auto_increment, 
 							 typeOfContact VARCHAR(5),
+							 theContact VARCHAR(30),
                              restaurant_ID INT, 
 								FOREIGN KEY (restaurant_ID)
 									REFERENCES restaurant(id),
