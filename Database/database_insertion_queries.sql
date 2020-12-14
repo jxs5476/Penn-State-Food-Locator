@@ -2,10 +2,10 @@ use restaurantinformation;
 
 #insert into restaurant
 INSERT INTO restaurant (name)
-            VALUES ("Wendy's")
-                   ("Chick-Fil-A")
-                   ("Perkins")
-                   ("Papa Johns")
+            VALUES ("Wendy's"),
+                   ("Chick-Fil-A"),
+                   ("Perkins"),
+                   ("Papa Johns"),
                    ("Texas Road House");
 
 #insert into restaurant_type
