@@ -8,6 +8,5 @@ mysql = {
 }
 
 databases = {
-    "userDB": "userInformation",
-    "restaurantDB": "restaurantInformation",
+    "restaurantDB": "restaurantinformation",
 }
