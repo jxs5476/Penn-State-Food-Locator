@@ -1,7 +1,7 @@
 
-use restaurantinformation;
-
 CREATE DATABASE restaurantinformation;
+
+use restaurantinformation;
 
 CREATE TABLE restaurant (id INT NOT NULL KEY AUTO_INCREMENT,
 						 name varchar(50));
